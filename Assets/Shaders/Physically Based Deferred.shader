@@ -87,8 +87,8 @@ Shader "SIGGRAPH Studio/Physically Based Deferred"
             #pragma vertex LitPassVertex
             #pragma fragment LitPassFragment_Deferred
 
-            #include "LWRP/ShaderLibrary/InputSurfacePBR.hlsl"
-            #include "LWRP/ShaderLibrary/LightweightPassLit.hlsl"
+            #include "ShaderLibrary/InputSurfacePBR.hlsl"
+            #include "ShaderLibrary/LightweightPassLit.hlsl"
 
             void LitPassFragment_Deferred(LightweightVertexOutput IN,
                 out half4 GBuffer0 : SV_Target0,
@@ -116,5 +116,5 @@ Shader "SIGGRAPH Studio/Physically Based Deferred"
         UsePass "LightweightPipeline/Standard (Physically Based)/Meta"
     }
     FallBack "Hidden/InternalErrorShader"
-    CustomEditor "LightweightStandardGUI"
+//    CustomEditor "LightweightStandardGUI"
 }

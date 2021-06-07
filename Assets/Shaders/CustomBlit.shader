@@ -16,7 +16,7 @@
 			#pragma vertex vert
 			#pragma fragment frag
 			
-			#include "LWRP/ShaderLibrary/Core.hlsl"
+			#include "ShaderLibrary/Core.hlsl"
 			
 			TEXTURE2D(_BlitTex);
 			SAMPLER(sampler_BlitTex);

@@ -19,7 +19,7 @@
             #pragma vertex Vertex
             #pragma fragment Fragment
 
-            #include "LWRP/ShaderLibrary/Lighting.hlsl"
+            #include "ShaderLibrary/Lighting.hlsl"
 
             UNITY_DECLARE_FRAMEBUFFER_INPUT_FLOAT(0); // Albedo
             UNITY_DECLARE_FRAMEBUFFER_INPUT_FLOAT(1); // SpecRoughness
