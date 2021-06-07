@@ -116,5 +116,5 @@ Shader "SIGGRAPH Studio/Physically Based Deferred"
         UsePass "LightweightPipeline/Standard (Physically Based)/Meta"
     }
     FallBack "Hidden/InternalErrorShader"
-//    CustomEditor "LightweightStandardGUI"
+    CustomEditor "LightweightStandardGUI"
 }
