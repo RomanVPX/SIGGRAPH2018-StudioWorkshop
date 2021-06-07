@@ -4,9 +4,9 @@ using UnityEngine.Rendering;
 namespace UnityEngine.Experimental.Rendering.LightweightPipeline
 {
     [ExecuteInEditMode]
-    public class MyDeferredRendererCompleted : MonoBehaviour, IRendererSetup 
+    public class MyDeferredRendererCompleted : MonoBehaviour, IRendererSetup
     {
-        MyGBufferAndLightingPassCompleted m_RenderPass;
+        private MyGBufferAndLightingPassCompleted m_RenderPass;
 
         public void OnEnable()
         {
@@ -22,14 +22,14 @@ namespace UnityEngine.Experimental.Rendering.LightweightPipeline
 
     public class MyGBufferAndLightingPassCompleted : ScriptableRenderPass
     {
-        RenderPassAttachment m_GBufferDiffuse;
-        RenderPassAttachment m_GBufferSpecularAndRoughness;
-        RenderPassAttachment m_GBufferNormal;
-        RenderPassAttachment m_CameraTarget;
-        RenderPassAttachment m_Depth;
+        private readonly RenderPassAttachment m_GBufferDiffuse;
+        private readonly RenderPassAttachment m_GBufferSpecularAndRoughness;
+        private readonly RenderPassAttachment m_GBufferNormal;
+        private readonly RenderPassAttachment m_CameraTarget;
+        private readonly RenderPassAttachment m_Depth;
 
-        Material m_DeferredShadingMaterial;
-        MaterialPropertyBlock m_LightPropertiesBlock = new MaterialPropertyBlock();
+        private readonly Material m_DeferredShadingMaterial;
+        private readonly MaterialPropertyBlock m_LightPropertiesBlock = new MaterialPropertyBlock();
 
         public MyGBufferAndLightingPassCompleted()
         {
@@ -48,8 +48,8 @@ namespace UnityEngine.Experimental.Rendering.LightweightPipeline
         public override void Execute(ScriptableRenderer renderer, ref ScriptableRenderContext context,
              ref CullResults cullResults, ref RenderingData renderingData)
         {
-            Camera camera = renderingData.cameraData.camera;
-            
+            var camera = renderingData.cameraData.camera;
+
             m_CameraTarget.BindSurface(BuiltinRenderTextureType.CameraTarget, false, true);
             context.SetupCameraProperties(camera, false);
 
@@ -62,7 +62,7 @@ namespace UnityEngine.Experimental.Rendering.LightweightPipeline
 
                 using (new RenderPass.SubPass(rp, new[] {m_CameraTarget}, new[] {m_GBufferDiffuse, m_GBufferSpecularAndRoughness, m_GBufferNormal, m_Depth}, true))
                 {
-                    RenderLights(context, cullResults, renderingData.lightData);    
+                    RenderLights(context, cullResults, renderingData.lightData);
                 }
             }
         }
@@ -92,7 +92,7 @@ namespace UnityEngine.Experimental.Rendering.LightweightPipeline
             {
                 VisibleLight currLight = visibleLights[i];
                 if (currLight.lightType != LightType.Directional)
-                    continue;
+                { continue; }
 
                 Vector4 lightDirection = -currLight.localToWorld.GetRow(2);
                 Vector4 lightColor = currLight.finalColor;
